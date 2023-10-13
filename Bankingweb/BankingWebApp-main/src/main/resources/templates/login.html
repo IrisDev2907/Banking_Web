@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- FAVICON -->
+	<link rel="apple-touch-icon" sizes="180x180"
+		  href="/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="64x64"
+		  href="/favicon/favicon-32x32.png.png">
+	<link rel="icon" type="image/png" sizes="64x64"
+		  href="/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/favicon/site.webmanifest">
+	<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg"
+		  color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+<!-- CSS & JAVA_SCRIPT -->
+<!-- CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<!-- JavaScript -->
+<script th:src="@{/js/chart.min.js}"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script th:src="@{/js/home.js}"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+
+<title>Banking Project</title>
+</head>
+<body>
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous"
+		src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=169447865033151&autoLogAppEvents=1"
+		nonce="8tLXlQO9"></script>
+
+	<!-- HEADER -->
+	<header class="container-fluid">
+		<div class="container d-flex justify-content-between">
+			<div class="services">
+				Dịch vụ <i class="fas fa-chevron-down"></i>
+			</div>
+			<div class="logo">
+				<a href="/"> <img src="/img/logo.png"> HuHuBank
+				</a>
+			</div>
+			<div class="contact">
+				<i class="fas fa-sign-in-alt"></i>&nbsp; <a href="/admin"> Đăng
+					nhập </a>
+			</div>
+		</div>
+		<div class="drop-down-menu">
+			<ul class="container d-flex justify-content-between">
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_1.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Gửi tiền</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_3.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Giao dịch</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_4.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Thanh toán</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_2.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Thẻ HuHuBank</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_7.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Bảo hiểm</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_6.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Ngân hàng số</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/more.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Xem thêm</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<!-- ------ -->
+
+	<!-- MAIN -->
+	<div id="main">
+		<div class="header-w3l">
+			<h1 class="mt-5">Đăng nhập</h1>
+		</div>
+		<div class="main-w3layouts-agileinfo">
+			<!--form-stars-here-->
+			<div class="wthree-form">
+				<h2>Vui lòng điền để đăng nhập</h2>
+				<form action="/perform-login" method="post">
+					<div class="form-sub-w3">
+						<input type="text" name="username" placeholder="Tên tài khoản"
+							required />
+						<div class="icon-w3">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</div>
+					</div>
+					<div class="form-sub-w3">
+						<input type="password" name="password" placeholder="Mật khẩu"
+							required />
+						<div class="icon-w3">
+							<i class="fa fa-unlock-alt" aria-hidden="true"></i>
+						</div>
+					</div>
+					<div class="submit-agileits">
+						<input type="submit" name="submit" value="Đăng nhập">
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+	<!-- ------ -->
+
+	<!-- FOOTER -->
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+					<h5>TRAO GIẢI PHÁP NHẬN NỤ CƯỜI</h5>
+					<ul>
+						<li>
+							<h4>HuHuBank</h4>
+						</li>
+						<li><a href="https://goo.gl/maps/MZiaPQ3HVxGD6TsLA"><i
+								class="fas fa-map-marker-alt"></i>&ensp;Address: E Campus Hutech, Quận 9</a></li>
+						<li><a href="mailto:squadbaton@gmail.com"><i
+								class="fas fa-envelope"></i>&ensp;Email:
+								squadbaton@gmail.com</a></li>
+						<li><a href="tel:0123456789"><i class="fas fa-phone"></i>&ensp;Hotline:
+								0123456789</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<h5>DỊCH VỤ</h5>
+					<ul>
+						<li><a href="javascript:void(0);">Gửi tiền</a></li>
+						<li><a href="javascript:void(0);">Giao dịch</a></li>
+						<li><a href="javascript:void(0);">Thanh toán</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-4">
+					<h5>KẾT NỐI VỚI CHÚNG TÔI</h5>
+					<div class="fb-page"
+						data-href="https://www.facebook.com/godlyfake"
+						data-tabs="timeline" data-width="300" data-height="230"
+						data-small-header="false" data-adapt-container-width="true"
+						data-hide-cover="false" data-show-facepile="true">
+						<blockquote
+							cite="https://www.facebook.com/godlyfake"
+							class="fb-xfbml-parse-ignore">
+							<a href="https://www.facebook.com/godlyfake">HuHuBank</a>
+						</blockquote>
+					</div>
+
+				</div>
+
+				<hr>
+				<div class="footer-copyright text-center py-3" style="width: 100%;">
+					©
+					<script>
+						var now = new Date();
+						document.write(now.getFullYear());
+					</script>
+					Copyright: <a
+						href="https://www.facebook.com/godlyfake"> Nhóm
+						10 - Squad Bất Ổn</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Messenger Plugin chat Code -->
+	<div id="fb-root"></div>
+
+	<!-- Your Plugin chat code -->
+	<div id="fb-customer-chat" class="fb-customerchat"></div>
+
+	<script>
+		var chatbox = document.getElementById('fb-customer-chat');
+		chatbox.setAttribute("page_id", "godlyfake");
+		chatbox.setAttribute("attribution", "biz_inbox");
+
+		window.fbAsyncInit = function() {
+			FB.init({
+				xfbml : true,
+				version : 'v12.0'
+			});
+		};
+
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+</body>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</html>

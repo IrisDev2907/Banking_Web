@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="description"
+	content="ban laptop uy tin, chat luong, dich vu tot">
+<meta name="keywords"
+	content="laptop, asus, dell, hp, lenovo, acer, apple, msi, lg">
+<meta name="author" content="CuongPham">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FAVICON -->
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg"
+	color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- CSS & JAVA_SCRIPT -->
+<!-- CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<!-- JavaScript -->
+<script th:src="@{/js/chart.min.js}"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script th:src="@{/js/home.js}"></script>
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/manage.css}">
+<!-- ----------------- -->
+
+<title>Banking Project</title>
+</head>
+
+<body>
+
+	<!-- MAIN -->
+	<div id="main">
+		<div th:insert="includes.html :: sidebar"></div>
+
+		<div class="page-container">
+
+			<div th:insert="includes.html :: header"></div>
+
+			<div class="main-content">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-add">
+							<div class="search-employee">
+								<div style="display: flex; width: 90%;">
+									<div style="display: flex; margin-right: 20px;">
+										<label
+											style="margin-top: 6px; margin-right: 10px; font-size: 17px;">Tháng:</label>
+										<select id="month-select" class="form-control"
+											style="width: max-content">
+											<option value="01" th:selected="${month} == '01'">1</option>
+											<option value="02" th:selected="${month} == '02'">2</option>
+											<option value="03" th:selected="${month} == '03'">3</option>
+											<option value="04" th:selected="${month} == '04'">4</option>
+											<option value="05" th:selected="${month} == '05'">5</option>
+											<option value="06" th:selected="${month} == '06'">6</option>
+											<option value="07" th:selected="${month} == '07'">7</option>
+											<option value="08" th:selected="${month} == '08'">8</option>
+											<option value="09" th:selected="${month} == '09'">9</option>
+											<option value="10" th:selected="${month} == '10'">10</option>
+											<option value="11" th:selected="${month} == '11'">11</option>
+											<option value="12" th:selected="${month} == '12'">12</option>
+										</select>
+									</div>
+									<div style="display: flex; margin-right: 20px;">
+										<label
+											style="margin-top: 6px; margin-right: 10px; font-size: 17px;">
+											Năm:</label>
+										<div>
+											<input type="text" class="form-control" th:value="${year}"
+												style="width: 70px" placeholder="Năm" id="year-input">
+											<div id="error-year" class="error" style="display: none;">Sai
+												định dạng (yyyy)</div>
+											<div id="error-year-null" class="error" style="display: none">Năm không được để trống</div>
+										</div>
+
+									</div>
+									<div style="width: auto; margin-right: 20px;">
+										<button type="button" class="btn btn-primary"
+											style="width: max-content" onclick="Banking.calcForSalary()">
+											<i class="fas fa-search"></i> Xem lương
+										</button>
+									</div>
+
+								</div>
+								<div style="width: auto;">
+									<a th:href="@{/admin/manage/salary/export-salary}" class="btn btn-success"
+										style="width: max-content">
+										<i class="far fa-file-excel"></i> Export Excel
+									</a>
+								</div>
+							</div>
+							<h1 class="my-3"></h1>
+
+							<table class="table">
+								<thead class="thead-light">
+									<tr>
+										<th>#</th>
+										<th>CMT</th>
+										<th>Họ tên</th>
+										<th>Địa chỉ</th>
+										<th>Ngày sinh</th>
+										<th>Vị trí</th>
+										<th>Tổng lương</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody id="myTable" th:if="${employeeSalaries != null}">
+									<tr th:each="employeeSalary : ${employeeSalaries}">
+										<td th:text="${employeeSalaryStat.index + 1}"></td>
+										<td th:text="${employeeSalary.idCard}"></td>
+										<td th:text="${employeeSalary.fullName}"></td>
+										<td th:text="${employeeSalary.address}"></td>
+										<td
+											th:text="${#dates.format(employeeSalary.dateOfBirth, 'dd/MM/yyyy')}"></td>
+										<td th:text="${employeeSalary.position}"></td>
+										<td
+											th:text="${#numbers.formatInteger(employeeSalary.totalSalary,0,'POINT') +' ₫'}"></td>
+										<td><a
+											th:href="@{/admin/manage/salary/detail(empId=${employeeSalary.id},month=${month}, year=${year})}">
+												Xem chi tiết lương </a></td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div class="text-center"
+								style="margin-bottom: -18px; margin-top: 50px;">
+								<ul class="page-numbers">
+									<li><a class="prev page-numbers"
+										href="javascript:Banking.goPrev()"><i
+											class="fas fa-angle-left"></i></a></li>
+									<li><div th:if="${page} == 1 or ${page == null}">
+											<span aria-current="page" class="page-numbers current">1</span>
+										</div>
+										<div th:unless="${page} == 1 or ${page == null}">
+											<a class="page-numbers"
+												href="javascript:Banking.addUrlParameter('page', 1)">1</a>
+										</div></li>
+									<li><div th:if="${page} == 2">
+											<span aria-current="page" class="page-numbers current">2</span>
+										</div>
+										<div th:unless="${page} == 2">
+											<a class="page-numbers"
+												href="javascript:Banking.addUrlParameter('page', 2)">2</a>
+										</div></li>
+
+									<li><div th:if="${page} == 3">
+											<span aria-current="page" class="page-numbers current">3</span>
+										</div>
+										<div th:unless="${page} == 3">
+											<a class="page-numbers"
+												href="javascript:Banking.addUrlParameter('page', 3)">3</a>
+										</div></li>
+									<li><div th:if="${page} == 4">
+											<span aria-current="page" class="page-numbers current">4</span>
+										</div>
+										<div th:unless="${page} == 4">
+											<a class="page-numbers"
+												href="javascript:Banking.addUrlParameter('page', 4)">4</a>
+										</div></li>
+									<li><div th:if="${page} == 5">
+											<span aria-current="page" class="page-numbers current">5</span>
+										</div>
+										<div th:unless="${page} == 5">
+											<a class="page-numbers"
+												href="javascript:Banking.addUrlParameter('page', 5)">5</a>
+										</div></li>
+									<li><a class="next page-numbers"
+										href="javascript:Banking.goNext()"><i
+											class="fas fa-angle-right"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div th:insert="includes.html :: footer"></div>
+
+		</div>
+	</div>
+
+</body>
+<style>
+.error {
+	font-weight: 400 !important;
+	color: red;
+	font-size: 15px !important;
+}
+</style>
+
+</html>

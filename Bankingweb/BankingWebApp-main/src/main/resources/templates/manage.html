@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="description"
+	content="">
+<meta name="keywords"
+	content="">
+<meta name="author" content="SquadBatOn">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FAVICON -->
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<!-- CSS & JAVA_SCRIPT -->
+<!-- CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<!-- JavaScript -->
+<script th:src="@{/js/chart.min.js}"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script th:src="@{/js/home.js}"></script>
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/manage.css}">
+<!-- ----------------- -->
+
+<title>Banking Project</title>
+</head>
+
+<body>
+
+	<!-- MAIN -->
+	<div id="main">
+		<div th:insert="includes.html :: sidebar"></div>
+
+		<div class="page-container">
+
+			<div th:insert="includes.html :: header"></div>
+
+			<div class="main-content">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="r3_counter_box">
+							<img src="/img/icons8-money-100.png" alt="manage">
+							<div class="stats">
+								<h5>
+									<span th:if="${totalDeposit}>99999999999"> <strong
+										th:text="${#numbers.formatInteger(totalDeposit/1000000000,0,'POINT') +' tỷ'}">
+									</strong>
+									</span> <span th:if="${totalDeposit} <= 99999999999"> <strong
+										th:text="${#numbers.formatInteger(totalDeposit,0,'POINT')}">
+									</strong>
+									</span>
+								</h5>
+								<span>Tổng tiền gửi</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="r3_counter_box">
+							<img src="/img/icons8-user-male-100.png" alt="manage">
+							<div class="stats">
+								<h5>
+									<strong
+										th:text="${#numbers.formatInteger(countCustomer,0,'POINT')}">
+									</strong>
+								</h5>
+								<span>Tổng khách hàng</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="r3_counter_box">
+							<img src="/img/icons8-transaction-list-100.png" alt="manage">
+							<div class="stats">
+								<h5>
+									<strong
+										th:text="${#numbers.formatInteger(countTransaction,0,'POINT')}">
+									</strong>
+								</h5>
+								<span>Tổng giao dịch</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="r3_counter_box">
+							<img src="/img/icons8-bank-cards-100.png" alt="manage">
+							<div class="stats">
+								<h5>
+									<strong
+										th:text="${#numbers.formatInteger(countBankAccount,0,'POINT')}">
+									</strong>
+								</h5>
+								<span>Số tài khoản ngân hàng</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-7 chart">
+						<div class="charts">
+							<canvas id="myChart"></canvas>
+						</div>
+
+					</div>
+					<div class="col-md-5">
+						<div class="table-product scrollbar1" id="style-1">
+							<table class="table">
+								<thead style="background-color: #03a9f4; color: white;">
+									<tr>
+										<th>Tên khách hàng</th>
+										<th>Số tiền gửi</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="customerDepositStat : ${customerDepositStats}">
+										<td th:text="${customerDepositStat.fullName}"></td>
+										<td
+											th:text="${#numbers.formatInteger(customerDepositStat.deposit,0,'POINT')+' ₫'}"></td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-md-7 chart">
+						<div class="charts">
+							<canvas id="myChart1"></canvas>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<div class="table-product scrollbar1" id="style-1">
+							<table class="table">
+								<thead style="background-color: #FFCC00; color: white;">
+									<tr>
+										<th>Tên khách hàng</th>
+										<th>Số tiền nợ</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="customerCreditStat : ${customerCreditStats}">
+										<td th:text="${customerCreditStat.fullName}"></td>
+										<td
+											th:text="${#numbers.formatInteger(customerCreditStat.credit,0,'POINT')+' ₫'}"></td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 slide-view">
+						<div id="demo" class="carousel slide" data-ride="carousel">
+
+							<ul class="carousel-indicators">
+								<li data-target="#demo" data-slide-to="0" class="active"></li>
+								<li data-target="#demo" data-slide-to="1"></li>
+							</ul>
+
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<div class="row">
+										<div class="col-md-4">
+											<img src="/img/banner5.jpg" alt="slide">
+										</div>
+										<div class="col-md-4">
+											<img src="/img/banner6.jpg" alt="slide">
+										</div>
+										<div class="col-md-4">
+											<img src="/img/banner7.jpg" alt="slide">
+										</div>
+									</div>
+
+								</div>
+								<div class="carousel-item">
+									<div class="row">
+										<div class="col-md-4">
+											<img src="/img/banner8.jpg" alt="slide">
+										</div>
+										<div class="col-md-4">
+											<img src="/img/banner4.jpg" alt="slide">
+										</div>
+										<div class="col-md-4">
+											<img src="/img/banner3.jpg" alt="slide">
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div th:insert="includes.html :: footer"></div>
+
+		</div>
+	</div>
+
+						<script th:inline="javascript">
+							/*<![CDATA[*/
+							
+							var datas= /*[[${listDataDeposit}]]*/0;
+	     					var labels=/*[[${listLabelDeposit}]]*/'';
+	     					
+	                    	var data = {
+	                        	labels: labels,
+	                        	datasets: [{
+	                            label: 'Thống kê số tiền gửi theo số tài khoản gửi tiền',
+	                            backgroundColor: '#03a9f4',
+	                            borderColor: '#72777a',
+	                            data: datas,
+	                        	}]
+	                   		};
+	                    	var config = {
+	                            type: 'line',
+	                            data,
+	                            options: {}
+	                    	};
+	                      	var myChart = new Chart(
+	                            document.getElementById('myChart'),
+	                            config
+	                        );
+	                      	
+	                     	datas= /*[[${listDataCredit}]]*/0;
+	     					labels=/*[[${listLabelCredit}]]*/'';
+	     					
+	                    	data = {
+	                        	labels: labels,
+	                        	datasets: [{
+	                            label: 'Thống kê số tiền nợ theo số tài khoản tín dụng',
+	                            backgroundColor: '#FFCC00',
+	                            borderColor: '#72777a',
+	                            data: datas,
+	                        	}]
+	                   		};
+	     					config = {
+	                            type: 'bar',
+	                            data,
+	                            options: {}
+	                    	};
+	                      	myChart = new Chart(
+	                            document.getElementById('myChart1'),
+	                            config
+	                        );
+
+
+							/*]]>*/
+						</script>
+
+</body>
+
+</html>

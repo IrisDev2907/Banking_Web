@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Banking Project</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<!-- FAVICON -->
+<link rel="apple-touch-icon" sizes="180x180"
+	href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="64x64"
+	href="/favicon/favicon-32x32.png.png">
+<link rel="icon" type="image/png" sizes="64x64"
+	href="/favicon/favicon-16x16.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg"
+	color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+<body>
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous"
+		src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=169447865033151&autoLogAppEvents=1"
+		nonce="8tLXlQO9"></script>
+
+	<header class="container-fluid">
+		<div class="container d-flex justify-content-between">
+			<div class="services">
+				Dịch vụ <i class="fas fa-chevron-down"></i>
+			</div>
+			<div class="logo">
+				<a href="/"> <img src="/img/logo.png"> HuHuBank
+				</a>
+			</div>
+			<div class="contact">
+				<i class="fas fa-sign-in-alt"></i>&nbsp; <a href="/admin"> Đăng
+					nhập </a>
+			</div>
+		</div>
+		<div class="drop-down-menu">
+			<ul class="container d-flex justify-content-between">
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_1.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Gửi tiền</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_3.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Giao dịch</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_4.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Thanh toán</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_2.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Thẻ HuHuBank</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_7.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Bảo hiểm</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/motk_6.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Ngân hàng số</a>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="javascript:void(0);"> <img src="/img/more.png">
+						</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);">Xem thêm</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</header>
+
+	<div id="banner">
+		<div id="demo" class="carousel slide" data-ride="carousel">
+
+			<ul class="carousel-indicators">
+				<li data-target="#demo" data-slide-to="0" class="active"></li>
+				<li data-target="#demo" data-slide-to="1"></li>
+				<li data-target="#demo" data-slide-to="2"></li>
+				<li data-target="#demo" data-slide-to="3"></li>
+			</ul>
+
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="/img/banner7.jpg" alt="Banner">
+				</div>
+				<div class="carousel-item">
+					<img src="/img/banner5.jpg" alt="Banner">
+				</div>
+				<div class="carousel-item">
+					<img src="/img/banner6.jpg" alt="Banner">
+				</div>
+				<div class="carousel-item">
+					<img src="/img/banner8.jpg" alt="Banner">
+				</div>
+			</div>
+
+			<a class="carousel-control-prev" href="#demo" data-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+			</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+				<span class="carousel-control-next-icon"></span>
+			</a>
+
+		</div>
+	</div>
+
+	<section class="section-hello container my-5 d-flex">
+
+
+
+		<div class="hello-day"
+			th:if="${#dates.format(#dates.createNow(), 'HH')} <= 11">
+			<img src="/img/Day.svg">
+			<div class="hello-welcome">
+				Chúc buổi sáng vui vẻ, <br> Bạn cần thông tin gì hôm nay?
+			</div>
+		</div>
+		<div class="hello-eve"
+			th:if="(12 <= ${#dates.format(#dates.createNow(), 'HH')}) and (${#dates.format(#dates.createNow(), 'HH')} <= 18)">
+			<img src="/img/icn-sunny.svg">
+			<div class="hello-welcome">
+				Chúc buổi chiều vui vẻ, <br> Bạn cần thông tin gì hôm nay?
+			</div>
+		</div>
+		<div class="hello-night"
+			th:if="${#dates.format(#dates.createNow(), 'HH')} >= 19">
+			<img src="/img/Night.svg">
+			<div class="hello-welcome">
+				Chúc buổi tối vui vẻ, <br> Bạn cần thông tin gì tối nay?
+			</div>
+		</div>
+
+	</section>
+
+	<div id="main">
+		<div class="container-fluid">
+			<div class="row change-bg">
+				<div class="col-md-2 tien-gui main-item">
+					<div class="bg-img"></div>
+					<h6>Tiền gửi</h6>
+					<div class="main-item-content">
+						<a href="javascript:void(0);">Tiền gửi thanh toán</a> <a
+							href="javascript:void(0);">Tiền gửi có kỳ hạn</a> <a
+							href="javascript:void(0);">Tiền gửi kinh doanh chứng khoán và
+							Tiền gửi chuyên dùng</a> <a href="javascript:void(0);">Gói tài
+							khoản</a>
+					</div>
+				</div>
+				<div class="col-md-2 ngan-hang-so main-item">
+					<div class="bg-img"></div>
+					<h6>Ngân hàng số</h6>
+					<div class="main-item-content">
+						<a href="javascript:void(0);">Ngân hàng di động</a> <a
+							href="javascript:void(0);">Dịch vụ ATM</a> <a
+							href="javascript:void(0);">Công nghệ mới</a>
+					</div>
+				</div>
+				<div class="col-md-2 dich-vu-the main-item">
+					<div class="bg-img"></div>
+					<h6>Dịch vụ thẻ</h6>
+					<div class="main-item-content">
+						<a href="javascript:void(0);">Thẻ ghi nợ quốc tế</a> <a
+							href="javascript:void(0);">Thẻ tín dụng quốc tế</a> <a
+							href="javascript:void(0);">Thẻ ghi nợ nội địa</a>
+					</div>
+				</div>
+				<div class="col-md-2 thanh-toan_chuyen-khoan main-item">
+					<div class="bg-img"></div>
+					<h6>Thanh toán & chuyển khoản</h6>
+					<div class="main-item-content">
+						<a href="javascript:void(0);">Chuyển tiền trong nước</a> <a
+							href="javascript:void(0);">Chuyển tiền quốc tế</a> <a
+							href="javascript:void(0);">Dịch vụ thanh toán</a>
+					</div>
+				</div>
+				<div class="col-md-2 vay-ca-nhan main-item">
+					<div class="bg-img"></div>
+					<h6>Vay cá nhân</h6>
+					<div class="main-item-content">
+						<a href="javascript:void(0);">Vay nhu cầu nhà ở</a> <a
+							href="javascript:void(0);">Vay mua ô tô</a> <a
+							href="javascript:void(0);">Vay du học</a> <a
+							href="javascript:void(0);">Vay sản xuất kinh doanh</a>
+					</div>
+				</div>
+				<div class="col-md-2 ngoai-hoi_thi-truong-von main-item">
+					<div class="bg-img"></div>
+					<h6>Ngoại hối & Thị trường vốn</h6>
+					<div class="main-item-content">
+						<a href="javascript:void(0);">Mua bán ngoại tệ</a> <a
+							href="javascript:void(0);">Sản phẩm cấu trúc</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container my-5">
+		<div class="row">
+			<div class="col-md-7" style="height: 100%">
+				<ul class="nav nav-tabs justify-content-around" id="myTab"
+					role="tablist">
+					<li class="nav-item"><a class="nav-link active" id="home-tab"
+						data-toggle="tab" href="#menu1" role="tab" aria-selected="true">Lãi
+							suất Gửi</a></li>
+					<li class="nav-item"><a class="nav-link" id="profile-tab"
+						data-toggle="tab" href="#menu2" role="tab" aria-selected="false">Lãi
+							suất Vay</a></li>
+					<li class="nav-item"><a class="nav-link" id="profile-tab"
+						data-toggle="tab" href="#menu3" role="tab" aria-selected="false">Ngoại
+							tệ</a></li>
+					<li class="nav-item"><a class="nav-link" id="profile-tab"
+						data-toggle="tab" href="#menu4" role="tab" aria-selected="false">Bảng
+							giá vàng</a></li>
+				</ul>
+
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="menu1" role="tabpanel">
+						<iframe frameborder="0" width="100%" height="400px"
+							src="https://webtygia.com/api/laisuat?bgheader=222d32&colorheader=ffffff&padding=5&fontsize=14&undefined"></iframe>
+					</div>
+					<div class="tab-pane fade" id="menu2" role="tabpanel">
+						<iframe frameborder="0" width="100%" height="400px"
+							src="https://webtygia.com/api/laisuatchovay?bgheader=222d32&colorheader=ffffff&padding=5&fontsize=14&border=1&undefined"></iframe>
+					</div>
+					<div class="tab-pane fade" id="menu3" role="tabpanel">
+						<iframe frameborder="0" width="100%" height="400px"
+							src="https://webtygia.com/api/ngoaite?bgheader=222d32&colorheader=ffffff&padding=5&fontsize=14&undefined"></iframe>
+					</div>
+					<div class="tab-pane fade" id="menu4" role="tabpanel">
+						<iframe frameborder="0" width="100%" height="400px"
+							src="https://webtygia.com/api/vang?bgheader=222d32&colorheader=ffffff&padding=5&fontsize=14&undefined"></iframe>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-5" style="padding-top: 38px; height: 100%;">
+				<iframe frameborder="0" height="400px" width="100%"
+					src="https://webtygia.com/api/cong-cu-chuyen-doi-tien-te?maukhungketqua=222d32&mauchuketqua=ffffff&sizechuketqua=30&fontsize=14&border=0&hienthamkhao=0&undefined"></iframe>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+					<h5>TRAO GIẢI PHÁP - NHẬN NỤ CƯỜI</h5>
+					<ul>
+						<li>
+							<h4>HuHuBank</h4>
+						</li>
+						<li><a href="https://goo.gl/maps/MZiaPQ3HVxGD6TsLA"><i
+								class="fas fa-map-marker-alt"></i>&ensp;Address: E Campus HUTECH, Quận 9</a></li>
+						<li><a href="mailto:squadbaton@gmail.com"><i
+								class="fas fa-envelope"></i>&ensp;Email:
+								squadbaton@gmail.com</a></li>
+						<li><a href="tel:0123456789"><i class="fas fa-phone"></i>&ensp;Hotline:
+								0123456789</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<h5>DỊCH VỤ</h5>
+					<ul>
+						<li><a href="javascript:void(0);">Gửi tiền</a></li>
+						<li><a href="javascript:void(0);">Giao dịch</a></li>
+						<li><a href="javascript:void(0);">Thanh toán</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-4">
+					<h5>KẾT NỐI VỚI CHÚNG TÔI</h5>
+					<div class="fb-page"
+						data-href="https://www.facebook.com/godlyfake"
+						data-tabs="timeline" data-width="300" data-height="230"
+						data-small-header="false" data-adapt-container-width="true"
+						data-hide-cover="false" data-show-facepile="true">
+						<blockquote
+							cite="https://www.facebook.com/godlyfake"
+							class="fb-xfbml-parse-ignore">
+							<a href="https://www.facebook.com/godlyfake">ACT
+								Bank</a>
+						</blockquote>
+					</div>
+
+				</div>
+
+				<hr>
+				<div class="footer-copyright text-center py-3" style="width: 100%;">
+					©
+					<script>
+						var now = new Date();
+						document.write(now.getFullYear());
+					</script>
+					Copyright: <a
+						href="https://www.facebook.com/godlyfake"> Team
+						10 - Squad Bất Ổn</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Messenger Plugin chat Code -->
+	<div id="fb-root"></div>
+
+	<!-- Your Plugin chat code -->
+	<div id="fb-customer-chat" class="fb-customerchat"></div>
+
+	<script>
+		var chatbox = document.getElementById('fb-customer-chat');
+		chatbox.setAttribute("page_id", "godlyfake");
+		chatbox.setAttribute("attribution", "biz_inbox");
+
+		window.fbAsyncInit = function() {
+			FB.init({
+				xfbml : true,
+				version : 'v12.0'
+			});
+		};
+
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+</body>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+</html>

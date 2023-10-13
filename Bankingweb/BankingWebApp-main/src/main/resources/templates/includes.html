@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="sidebar" th:fragment="sidebar">
+		<div class="sidebar-inner">
+			<div class="sidebar-logo">
+				<a class="sidebar-link" href="/admin"> <img class="icon"
+					src="/img/logo.png">
+					<h5 class="logo-text">HuHuBank</h5>
+				</a>
+			</div>
+
+			<nav class="navbar scrollbar" id="style-1">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="/admin"><i
+							class="fas fa-home"></i>Trung tâm báo cáo</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown"><i class="fas fa-money-bill-wave"></i>Giao Dịch</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/admin/transaction/credit">Giao
+								dịch</a><a class="dropdown-item" href="/admin/transaction/deposit">Gửi
+								tiền</a><a class="dropdown-item"
+								href="/admin/transaction/create-payment-direct">Thanh toán trực
+								tiếp</a><a class="dropdown-item"
+								href="/admin/transaction/create-payment">Thanh toán từ tài khoản gửi tiền</a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/admin/manage/customer"><i class="fas fa-users"></i>Quản lý khách hàng</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/admin/manage/employee"><i class="fas fa-user-tie"></i> Quản lý nhân viên</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown"><i class="far fa-credit-card"></i>Quản lý tài khoản ngân hàng</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/admin/manage/deposit-account">Quản lý tài khoản gửi tiền
+								</a> <a class="dropdown-item"
+								href="/admin/manage/credit-account">Quản lý tài khoản tín dụng</a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/admin/manage/bank-account-type"><i
+							class="fas fa-folder"></i>Quản lý hạng tài khoản</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/admin/manage/salary"><i class="fas fa-calculator"></i> Quản lý lương nhân viên</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown"><i class="fas fa-chart-bar"></i> Số liệu thống kê</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item"
+								href="/admin/statistic/customer-deposit-max">Thống kê 10 khách hàng<br>với số tiền gửi nhiều nhất</a> <a class="dropdown-item"
+								href="/admin/statistic/customer-credit-max">Thống kê 10 khách hàng<br>với số tiền nợ nhiều nhất</a> <a class="dropdown-item"
+								href="/admin/statistic/credit-account-balance-max">Thống kê 10 tài khoản tín dụng<br>có số nợ nhiều nhất</a> <a class="dropdown-item"
+								href="/admin/statistic/deposit-account-balance-max">Thống kê 10 tài khoản gửi tiền<br>có số dư nhiều nhất</a> <a class="dropdown-item"
+								href="/admin/statistic/customer-with-transaction">Thống kê khách hàng<br>với số tiền giao dịch theo<br>các loại giao dịch<br>trong khoảng thời gian</a> <a class="dropdown-item"
+								href="/admin/statistic/transaction-by-customer">Hiển thị các giao dịch<br>theo khách hàng<br>và xuất dữ liệu ra Excel</a> <a class="dropdown-item"
+								href="/admin/statistic/customer-by-account">Tìm khách hàng và liệt kê giao<br>dịch của số tài khoản đó</a>
+						</div></li>
+				</ul>
+
+			</nav>
+		</div>
+	</div>
+
+	<div class="header-container" th:fragment="header">
+		<nav class="navbar">
+			<ul class="navbar-nav">
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown"><img class="icon" alt="user"
+						src="/img/userlogin.png"> <span class="text-icon"
+						th:text="${session.usernameEmployee}"></span> </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/admin/profile"><i
+							class="far fa-user"></i>Hồ sơ cá nhân</a> <a class="dropdown-item"
+							href="/admin/salary"><i class="fas fa-wallet"></i>Lương</a> <a
+							class="dropdown-item" href="/logout"><i
+							class="fas fa-power-off"></i>Thoát</a>
+					</div></li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="footer" th:fragment="footer">
+		© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span>
+		Copyright: <a href="https://www.facebook.com/godlyfake">
+				Nhóm 10 - Squad Bất Ổn</a>
+
+		<div id="toTop">
+			<img src="/img/arrow5-up-512.png" id="onTop" />
+		</div>
+	</div>
+
+</body>
+</html>
